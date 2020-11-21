@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 using namespace std;
 
 class Casino{
@@ -13,13 +12,21 @@ public:
 		this->wonMoney = wonMoney;
 		this->betMoney = betMoney;
 	}
-	virtual ~Casino() {
+	~Casino() {
 		//cout << "Destructor Casino" << endl;
 	}
 
-	virtual void Show() = 0;
-	virtual void Name() = 0;
+	void Show();
+	void Name();
 };
+
+void Casino::Name(){
+	cout << "Casino";
+}
+
+void Casino::Show(){
+	cout << "Bet money: " << betMoney << ", won money: " << wonMoney;
+}
 
 class PlaceSettings : public virtual Casino{
 protected:
@@ -32,11 +39,11 @@ public:
 		this->tableNumber = tableNumber;
 		this->amountOfPlaces = amountOfPlaces;
 	}
-	virtual ~PlaceSettings() {
+    ~PlaceSettings() {
 		//cout << "Destructor PlaceSettings" << endl;
 	}
-	virtual void IncPlaces();
-	virtual void DecPlaces();
+	void IncPlaces();
+	void DecPlaces();
 	void Name();
 	void Show();
 };
@@ -72,11 +79,11 @@ public:
 		this->amountOfCards = amountOfCards;
 		this->amountOfPlayers = amountOfPlayers;
 	}
-	virtual ~GameSettings() {
+	~GameSettings() {
 		//cout << "Destructor GameSettings" << endl;
 	}
-	virtual void AddPlayers();
-	virtual void ChangeAmountOfCards(int newCards);
+	void AddPlayers();
+	void ChangeAmountOfCards(int newCards);
 	void Name();
 	void Show();
 };
@@ -117,14 +124,10 @@ public:
 	virtual ~Poker() {
 		//cout << "Destructor Poker" << endl;
 	}
-	virtual void MultiplyRate(int num);
-	virtual void ResetRate();
+	void MultiplyRate(int num);
+    void ResetRate();
 	void Show();
-	void Name();
 };
-void Poker::Name(){
-	cout << "Poker";
-}
 void Poker::Show(){
 	cout << "Bet money: " << betMoney << ", won money: " << wonMoney << ", amount of cards: " << amountOfCards <<
 			", amount of players: " << amountOfPlayers << ", table number: " << tableNumber << ", amount of places: " << amountOfPlaces <<
@@ -210,9 +213,11 @@ int main() {
 	poker.Show();
 	poker.AddPlayers();
 	poker.Show();
-	poker.Name();
 
-	//poker.GameSettings::Name();
+	poker.GameSettings::Name();
+	poker.PlaceSettings::Name();
+	poker.Casino::Name();
 
 	return 0;
 }
+
