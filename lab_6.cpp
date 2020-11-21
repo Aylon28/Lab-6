@@ -108,6 +108,13 @@ void GameSettings::Show(){
 	cout << "Bet money: " << betMoney << ", won money: " << wonMoney << ", amount of cards: " << amountOfCards << ", amount of players: " << amountOfPlayers << endl;
 }
 
+
+
+
+
+
+//Не переопределён метод "Name()"
+
 class Poker : public PlaceSettings, public GameSettings{
 private:
 	int score;
